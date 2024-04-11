@@ -1,5 +1,11 @@
 #!/bin/bash
 
+echo -e "\e[0;31m\nTHIS SCRIPT CHECKS FOR THE FOLLOWING CONTROL PANELS AND UPDATE NEW IP ADDRESS! \n\e[0m"
+echo -e "\e[0;32m1. HestiaCP
+2. WHM/cPanel
+3. CyberPanel 
+4. Plesk\n \e[0m"
+
 #OLD_IP=$1
 #NEW_IP=$2
 
@@ -33,13 +39,13 @@ fi
 
 
 if [ -f /usr/local/hestia/conf/hestia.conf ]; then
-
-	v-update-sys-ip
-	STATUSS=`echo$?`
-	service nginx restart > /dev/null 2>&1
-	nginx_stat=`systemctl show -p ActiveState --value nginx`
-	service apache2 restart > /dev/null 2>&1
-	apache2_stat=`systemctl show -p ActiveState --value apache2`
+		echo -e "\e[0;31m\nThis is Hestia Control Panel! \n\e[0m"
+		v-update-sys-ip > /dev/null 2>&1
+		STATUSS=`echo$?`
+		service nginx restart > /dev/null 2>&1
+		nginx_stat=`systemctl show -p ActiveState --value nginx`
+		service apache2 restart > /dev/null 2>&1
+		apache2_stat=`systemctl show -p ActiveState --value apache2`
 
 	if [ "$nginx_stat" = "failed" ] || [ "$apache2_stat" = "failed" ]; then
 		v-delete-sys-firewall
@@ -85,6 +91,7 @@ if [ -f /usr/local/hestia/conf/hestia.conf ]; then
 
 
 elif [ -f /var/cpanel/cpanel.config ]; then
+		echo -e "\e[0;31m\nThis is WHM/cPanel! \n\e[0m"
 		/usr/local/cpanel/cpkeyclt
 	if hostname |grep -iqs  ".ultasrv.net"; then
 		fqdn=ultasrv.net
@@ -94,7 +101,6 @@ elif [ -f /var/cpanel/cpanel.config ]; then
 		history -c
 	fi
 
-		#IIPP=`wget -O - -q ifconfig.me` && for i in `cat /etc/trueuserdomains |awk '{ print $2 }'`; do whmapi1 setsiteip ip=$IIPP user=$i; done && history -c
 		for i in `cat /etc/trueuserdomains |awk '{ print $2 }'`; do whmapi1 setsiteip ip=$NEW_IP user=$i; done && history -c
 		cat /etc/userdatadomains |grep "==main==\|==addon==\|==parked==" | cut -d: -f1 > /root/klem_domainss
 		> /root/klem_domains_uses_our_NS
