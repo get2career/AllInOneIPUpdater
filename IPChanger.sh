@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -e "\e[0;31m\nTHIS SCRIPT CHECKS FOR THE FOLLOWING CONTROL PANELS AND UPDATE NEW IP ADDRESS! \n\e[0m"
+echo -e "\e[0;31m\nTHIS SCRIPT CHECKS FOR THE FOLLOWING CONTROL PANELS AND UPDATE NEW IP ADDRESS! \n \e[0m"
 echo -e "\e[0;32m1. HestiaCP
 2. WHM/cPanel
 3. CyberPanel 
@@ -123,6 +123,7 @@ elif [ -f /usr/local/CyberCP/CyberCP/settings.py ]; then
 		echo -e "\e[0;31m\nPlease Update New IP address, $NEW_IP, for the following DOMAINS.\n\n \e[0m"
 		cat /root/klem_domains_uses_our_NS
 		history -c
+	fi
 
 	#if hostname |grep -iqs  ".ultasrv.net"; then 
 		#fqdn=ultasrv.net
