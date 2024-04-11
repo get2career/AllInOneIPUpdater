@@ -25,15 +25,12 @@ yum_bin=$(which yum)
 apt_bin=$(which apt)
 dnf_bin=$(which dnf)
 
-if [[ ! -z $yum_bin ]]; then
-    		$yum_bin install whois -y > /dev/null 2>&1
-	elif [[ ! -z $apt_bin ]]; then
-  		$apt_bin install whois -y > /dev/null 2>&1
-	elif [[ ! -z $dnf_bin ]]; then
-		$dnf_bin install whois -y > /dev/null 2>&1
-	else
-		echo -e "\e[0;31m\nCouldn't locate the Linux Distribution, Please MANUALLY INSTALL "whois" package and rerun this SCRIPT\n \e[0m"
-	exit 2
+if [ ! -z "$yum_bin" ]; then
+yum install whois -y > /dev/null 2>&1
+elif [ ! -z "$apt_bin" ]; then
+apt install whois -y > /dev/null 2>&1
+elif [ ! -z "$dnf_bin" ]; then
+dnf install whois -y > /dev/null 2>&1
 fi
 
 
