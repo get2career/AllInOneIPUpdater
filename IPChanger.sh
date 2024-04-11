@@ -149,11 +149,9 @@ elif [ -f /usr/local/psa/admin/conf/panel.ini ]; then
 		
 		if [ -s /root/klem_domains_uses_our_NS  ]; then
 			echo -e "\e[0;31m\nPlease Update New IP address, $NEW_IP, for the following DOMAINS.\n\n \e[0m"
-			cat /root/klem_domains_uses_our_NS
-			history -c
+			cat /root/klem_domains_uses_our_NS && history -c
 		fi
 	else
 		echo -e "\e[0;31m\nIP update in Plesk failed\n \e[0m"
 	fi
 fi
-history -c
