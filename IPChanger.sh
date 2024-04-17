@@ -10,6 +10,8 @@ echo -e "\e[0;32m1. HestiaCP
 #NEW_IP=$2
 
 ls -l /etc/nginx/conf.d/
+IIPP=`wget -O - -q ifconfig.me`
+echo $IIPP
 
 while true; do
 	read -p "Enter Old IP address: " OLD_IP
