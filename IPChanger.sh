@@ -105,7 +105,7 @@ elif [ -f /var/cpanel/cpanel.config ]; then
 		> /root/klem_domains_uses_our_NS
 		for i in `cat /root/klem_domainss`; do if whois $i  |grep "Name Server" |head -2| grep  -qsi ".ultahost.com"; then echo $i >> /root/klem_domains_uses_our_NS;  fi;  done
 	if [ -s /root/klem_domains_uses_our_NS  ]; then
-		echo -e "\e[0;31m\nPlease Update New IP address, $IIPP, for the following DOMAINS.\n\n \e[0m"
+		echo -e "\e[0;31m\nPlease Update New IP address, $NEW_IP, for the following DOMAINS.\n\n \e[0m"
 		cat /root/klem_domains_uses_our_NS
 		history -c
 	fi
