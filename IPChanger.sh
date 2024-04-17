@@ -143,6 +143,7 @@ elif [ -f /usr/local/psa/admin/conf/panel.ini ]; then
 	if [ $STATUSS = "0" ]; then
 		echo -e "\e[0;31m\nPlesk IP changed\n \e[0m"
 		/usr/sbin/plesk bin ipmanage --remove $OLD_IP > /dev/null 2>&1
+		for i in $(plesk bin subscription -l); do plesk bin subscription -u "$i" -ip $NEW_IP; done
 		plesk bin domain -l > /root/klem_domainss
 		> /root/klem_domains_uses_our_NS
 		for i in `cat /root/klem_domainss`; do if whois $i  |grep "Name Server" |head -2| grep  -qsi ".ultahost.com"; then echo $i >> /root/klem_domains_uses_our_NS;  fi;  done
