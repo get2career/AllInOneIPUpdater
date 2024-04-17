@@ -9,6 +9,8 @@ echo -e "\e[0;32m1. HestiaCP
 #OLD_IP=$1
 #NEW_IP=$2
 
+ls -l /etc/nginx/conf.d/
+
 while true; do
 	read -p "Enter Old IP address: " OLD_IP
 	read -p "Enter New IP address: " NEW_IP
