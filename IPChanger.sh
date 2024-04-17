@@ -40,7 +40,7 @@ fi
 if [ -f /usr/local/hestia/conf/hestia.conf ]; then
 		echo -e "\e[0;31m\nThis is Hestia Control Panel! \n\e[0m"
 		v-update-sys-ip > /dev/null 2>&1
-		STATUSS=`echo$?`
+		STATUSS=`echo $?`
 		service nginx restart > /dev/null 2>&1
 		nginx_stat=`systemctl show -p ActiveState --value nginx`
 		service apache2 restart > /dev/null 2>&1
